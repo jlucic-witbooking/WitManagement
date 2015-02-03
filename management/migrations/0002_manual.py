@@ -104,6 +104,12 @@ class Migration(migrations.Migration):
             preserve_default=True,
         ),
         migrations.AddField(
+            model_name='contract',
+            name='instance',
+            field=models.ForeignKey(blank=True, to='management.Instanciasaplicaciones', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
             model_name='Partners',
             name='tipo_partner',
             field=models.ForeignKey(blank=True, to='management.Client', null=True),

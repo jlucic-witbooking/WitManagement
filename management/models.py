@@ -56,7 +56,7 @@ class Contract(models.Model):
     commission_date_criteria = models.DecimalField(max_digits=12, decimal_places=7, blank=True, null=True)
     commission_monthly_minimum = models.DecimalField(max_digits=12, decimal_places=7, blank=True, null=True)
     setup_fee = models.DecimalField(max_digits=12, decimal_places=7, blank=True, null=True)
-    instance = models.ForeignKey('Instanciasaplicaciones')
+    instance = models.ForeignKey('Instanciasaplicaciones', blank=True, null=True)
     service = models.ForeignKey('Service')
 
     class Meta:
@@ -66,7 +66,7 @@ class Contract(models.Model):
 
 class Instanciasaplicaciones(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
-    aplicacion = models.ForeignKey(Aplicaciones)
+    aplicacion = models.ForeignKey(Aplicaciones, blank=True, null=True)
     identificador = models.CharField(unique=True, max_length=255, blank=True)
     alta = models.DecimalField(max_digits=11, decimal_places=4, blank=True, null=True)
     comi = models.DecimalField(max_digits=7, decimal_places=4, blank=True, null=True)
