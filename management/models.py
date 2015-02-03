@@ -15,6 +15,9 @@ class Aplicaciones(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
     identificador = models.CharField(max_length=45, blank=True)
 
+    def __unicode__(self):
+        return u'%s' % self.identificador
+
     class Meta:
         managed = True
         db_table = 'aplicaciones'
@@ -105,6 +108,9 @@ class Instanciasaplicaciones(models.Model):
     partner_support = models.ForeignKey('Partners', blank=True, null=True, related_name="partner_support")
     client = models.ForeignKey(Client, blank=True, null=True)
     fini_actividad_max = models.DateField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u'%s' % self.identificador
 
     class Meta:
         managed = True
