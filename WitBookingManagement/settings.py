@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path import dirname
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -30,12 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'management'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,10 +62,21 @@ WSGI_APPLICATION = 'WitBookingManagement.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'witbooking_management',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost'
+    },
+    'witmetadata': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'witmetadata2',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost'
     }
 }
+DATABASE_ROUTERS = ['management.router.ManagementRouter']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -81,7 +96,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
 )
